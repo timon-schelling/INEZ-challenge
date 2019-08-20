@@ -1,0 +1,43 @@
+{
+  "products": {
+    "Milch": ["Milch Gut&Günstig"]
+  },
+  "units": [
+    {
+      "name": "Gramm",
+      "shortcut": "mg"
+    },
+    {
+      "name": "Kilogramm",
+      "shortcut": "kg"
+    },
+    {
+      "name": "Milliliter",
+      "shortcut": "ml"
+    },
+    {
+      "name": "Liter",
+      "shortcut": "l"
+    },
+    {
+      "name": "Meter",
+      "shortcut": "m"
+    },
+    {
+      "name": "Packung",
+      "shortcut": "P."
+    },
+    {
+      "name": "Packungen",
+      "shortcut": "P."
+    },
+    {
+      "name": "Packet",
+      "shortcut": "P."
+    },
+    {
+      "name": "Stücke",
+      "shortcut": "St."
+    }
+  ]
+}
