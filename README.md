@@ -19,7 +19,7 @@ This Project Is my participation in the INEZ-challege by it-talents.de(https://w
 Download the dist.zib from the current release and extract it on your machine
 
 ### Usage
-Run the "launch" file depending on your OS
+Run the `launch` file depending on your OS
 
 Windows:
 
@@ -47,7 +47,7 @@ or the following command on Windows:
     gradlew build
 
 The folder `dist` will contain a ready to use build of INEZ
-and as common for gradle `build` all other build files.
+and (as common for gradle) `build` all other build files.
 
 ### Content
 

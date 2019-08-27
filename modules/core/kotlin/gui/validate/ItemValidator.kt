@@ -22,6 +22,6 @@ object ItemValidator {
         endOfString()
     }
     fun Item.isValid() = text.matches(validItemRegex)
-    fun Item.digit() = text.substringBefore(whitespaceRegex.find(text)?.value!!).replace(",", ".").toFloat()
+    fun Item.digit() = text.substringBefore(whitespaceRegex.find(text)?.value!!).replace(",", ".").toDouble()
     fun Item.text() = text.substringAfter(whitespaceRegex.find(text)?.value!!)
 }

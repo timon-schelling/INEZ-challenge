@@ -49,7 +49,7 @@ class Item(text: String, completed: Boolean = false) {
     fun validateAndSplit() = with(ItemValidator){
         if(this@Item.isValid()) ValidSplintedItem(this@Item.digit(), this@Item.text()) else null
     }
-    data class ValidSplintedItem(val digit: Float, val text: String)
+    data class ValidSplintedItem(val digit: Double, val text: String)
 }
 
 

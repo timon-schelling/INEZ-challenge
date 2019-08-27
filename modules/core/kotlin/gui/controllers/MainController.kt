@@ -34,13 +34,18 @@ object MainController : Controller() {
                 if (itItemSplinted != null) {
                     if (itItemSplinted.text == itemSplinted.text){
                         remove(it)
-                        add("${(itItemSplinted.digit + itemSplinted.digit).toString().replace(".", ",")} ${itemSplinted.text}")
+                        add("${
+                            run {  
+                                val digit = itItemSplinted.digit + itemSplinted.digit
+                                if(digit - digit.toLong() == 0.0) digit.toLong() else digit
+                            }.toString().replace(".", ",")
+                        } ${itemSplinted.text}")
                         return@add
                     }
                 }
             }
         }
-        if (item.text.isNotBlank()) MainModel.elements.asReversed().add(item)
+        if (item.text.isNotBlank()) if(MainModel.elements.isEmpty()) MainModel.elements.add(item) else MainModel.elements.asReversed().add(item)
     }
 
     /**
