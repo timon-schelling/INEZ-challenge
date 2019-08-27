@@ -1,6 +1,5 @@
 package gui.custom
 
-import amber.collections.moveAllValues
 import javafx.beans.property.*
 import javafx.event.EventTarget
 import javafx.geometry.Side
@@ -12,18 +11,29 @@ import klang.check
 import klang.groupRepeatedSuggestions
 import klang.rule.Rule
 import klang.sortByRepetitions
-import klang.suggestion.RepeatedSuggestion
 import klang.suggestion.Suggestion
 import kotlinx.coroutines.*
 import tornadofx.*
 
+/**
+ * a TornadoFX textfield that can suggest user input by a given [rule]
+ * @property rule used to suggest user input
+ * @property searchTimeout the timeout for a suggestion search
+ */
 class AutoCompleteTextField(val rule: Rule, val searchTimeout: Long = 3000L) : TextField() {
 
-    val suggestionsProperty = SimpleObjectProperty<List<Suggestion>>()
-    var suggestions by suggestionsProperty
+    private val suggestionsProperty = SimpleObjectProperty<List<Suggestion>>()
+    private var suggestions by suggestionsProperty
 
-    val popup = ContextMenu()
+    /**
+     * the [popup] used for user input suggestions
+     */
+    private val popup = ContextMenu()
 
+    /**
+     * suggests user input by a given [rule]
+     * @param rule
+     */
     private fun makeSuggestions(rule: Rule) {
         GlobalScope.launch(Dispatchers.Main) {
             val checkedText = text
@@ -34,7 +44,7 @@ class AutoCompleteTextField(val rule: Rule, val searchTimeout: Long = 3000L) : T
                 }
             }.await()?.filter {
                 currentCaretPosition > it.position.offset &&
-                currentCaretPosition <= it.position.offset + it.position.length + 1 &&
+                currentCaretPosition <= it.position.offset + it.position.length &&
                 it.suggested.isNotBlank()
             }?.toMutableList()
 
@@ -59,10 +69,13 @@ class AutoCompleteTextField(val rule: Rule, val searchTimeout: Long = 3000L) : T
         suggestions = mutableListOf<Suggestion>()
     }
 
+    /**
+     * updates suggestion [popup]
+     */
     private fun updatePopup() {
         popup.items.clear()
         suggestions.forEach {
-            popup.items.add(MenuItem(it.suggested).apply {
+            popup.items.add(MenuItem(it.message).apply {
                 action {
                     with(this@AutoCompleteTextField) {
                         text = text.apply(it)
@@ -73,12 +86,21 @@ class AutoCompleteTextField(val rule: Rule, val searchTimeout: Long = 3000L) : T
         }
     }
 
+    /**
+     * shows suggestion [popup]
+     */
     private fun showPopup() {
         popup.hide()
         popup.show(this, Side.BOTTOM, translateX, translateY)
     }
 }
 
+/**
+ * creates a [AutoCompleteTextField] with a given [rule]
+ * @param rule used to suggest user input
+ * @param op TornadoFX dsl block used to configure the created [AutoCompleteTextField]
+ * @return the created [AutoCompleteTextField]
+ */
 fun EventTarget.autoCompeteTextfield(rule: Rule, op: AutoCompleteTextField.() -> Unit = {}): AutoCompleteTextField {
     val node = AutoCompleteTextField(rule)
     node.attachTo(this, op)

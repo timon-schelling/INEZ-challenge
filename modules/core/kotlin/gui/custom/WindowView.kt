@@ -12,17 +12,22 @@ import javafx.scene.layout.HBox
 import javafx.scene.paint.Color
 import javafx.stage.Screen
 import javafx.stage.Stage
+import javafx.stage.StageStyle
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import tornadofx.*
 
+/**
+ * a TornadoFX view that imitates a resizeable and draggable window
+ * should be used on a [Stage] with style set to [StageStyle.TRANSPARENT]
+ */
 open class WindowView(): View() {
 
-    val window by cssid()
+    private val window by cssid()
 
-    val titleBar by cssid(snakeCase = true)
+    private val titleBar by cssid(snakeCase = true)
 
     private lateinit var windowTitleBar: HBox
     private lateinit var windowBody: BorderPane
@@ -49,18 +54,26 @@ open class WindowView(): View() {
         }
     }
 
+    /**
+     * TornadoFX dsl function used to configure [windowTitleBar]
+     * @param op TornadoFX dsl block used to configure [windowTitleBar]
+     */
     fun titleBar(op: HBox.() -> Unit) = windowTitleBar.apply {
         apply(op)
     }
 
+    /**
+     * TornadoFX dsl function used to configure [windowBody]
+     * @param op TornadoFX dsl block used to configure  [windowBody]
+     */
     fun body(op: BorderPane.() -> Unit) = windowBody.apply {
         center {
             apply(op)
         }
     }
 
-    fun Stage.addDragZone(zone: Parent) = allowDrag(zone, this)
-    fun allowDrag(root: Parent, stage: Stage, dragZonePadding: Double = 7.0) {
+    private fun Stage.addDragZone(zone: Parent) = allowDrag(zone, this)
+    private fun allowDrag(root: Parent, stage: Stage, dragZonePadding: Double = 7.0) {
         val SCREEN_BOUNDS = Screen.getPrimary()
                 .visualBounds
         var offset: Point2D? = null
@@ -132,7 +145,6 @@ open class WindowView(): View() {
         private var startX = 0.0
         private var startY = 0.0
 
-        // Max and min sizes for controlled stage
         private var minWidth: Double = 0.toDouble()
         private var maxWidth: Double = 0.toDouble()
         private var minHeight: Double = 0.toDouble()

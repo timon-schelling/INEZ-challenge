@@ -17,6 +17,7 @@ allprojects {
         jcenter()
         maven("https://kotlin.bintray.com/kotlinx")
         maven("https://dl.bintray.com/soywiz/soywiz")
+        maven("https://jitpack.io")
     }
     tasks {
         withType<KotlinCompile> {

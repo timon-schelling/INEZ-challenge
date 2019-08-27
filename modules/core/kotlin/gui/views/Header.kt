@@ -1,6 +1,6 @@
 package gui.views
 
-import gui.Icons
+import gui.custom.Icons
 import gui.style.MainStylesheet
 import gui.controllers.MainController
 import gui.custom.autoCompeteTextfield
@@ -15,6 +15,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import tornadofx.*
 
+/**
+ * TornadoFX header view
+ */
 class Header() : View() {
 
     private lateinit var addTextField: TextField

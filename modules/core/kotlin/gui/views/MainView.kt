@@ -6,6 +6,9 @@ import gui.custom.windowView
 import gui.view
 import tornadofx.*
 
+/**
+ * TornadoFX main view off [INEZApplication]
+ */
 class MainView: View("INEZ") {
 
     override val root = windowView {

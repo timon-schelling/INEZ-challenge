@@ -1,6 +1,6 @@
 package gui.views
 
-import gui.Icons
+import gui.custom.Icons
 import gui.style.MainStylesheet
 import gui.controllers.MainController
 import gui.custom.iconButton
@@ -9,6 +9,9 @@ import gui.models.MainModel
 import javafx.geometry.Pos
 import tornadofx.*
 
+/**
+ * TornadoFX footer view
+ */
 class Footer() : View() {
 
     override val root = hbox {
@@ -27,5 +30,5 @@ class Footer() : View() {
         }
     }
 
-    val Int.plural: String get() = if (this == 1) "" else "s"
+    private val Int.plural: String get() = if (this == 1) "" else "s"
 }

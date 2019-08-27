@@ -1,7 +1,9 @@
+import gui.models.Product
+import gui.models.ProductGroup
+import gui.models.Unit
 import klang.apply
 import klang.check
 import klang.impl.*
-import klang.impl.Unit
 import klang.tool
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObjectSerializer
@@ -28,7 +30,6 @@ fun main() {
                     }
                 }
         )
-        +AutoCompleteRule(File("Nomen.txt").readLines())
         +JLanguageToolRule(GermanyGerman())
     }
 

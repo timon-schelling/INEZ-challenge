@@ -10,6 +10,10 @@ import klang.suggestion.Suggestion
 import org.languagetool.JLanguageTool
 import org.languagetool.Language
 
+/**
+ * [Rule] used as a adapter between JLanguageTool and klang
+ * @property tool the JLanguageTool to use
+ */
 class JLanguageToolRule(private val tool: JLanguageTool) : Rule(), Synchronized by Synchronized() {
     constructor(language: Language) : this(JLanguageTool(language))
     override fun invoke(input: Input): List<Suggestion> = rule(input) {

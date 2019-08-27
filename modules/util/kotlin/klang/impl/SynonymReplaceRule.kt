@@ -10,7 +10,10 @@ import scala.util.matching.Regex
 
 data class Synonym(val original: String, val replacement: String)
 
-//todo redo allow multi word synonyms
+/**
+ * [Rule] used to replace given [synonyms]
+ * @property synonyms a list of synonym's that might be replaced
+ */
 open class SynonymReplaceRule(private val synonyms: List<Synonym>) : Rule() {
 
     override fun invoke(input: Input): List<Suggestion> = rule(input) {

@@ -20,7 +20,11 @@ import java.text.BreakIterator
 import kotlin.math.ln
 import kotlin.math.max
 
-
+/**
+ * [Rule] used to complied words
+ * @constructor
+ * @param words the list of suggestible words
+ */
 class AutoCompleteRule(words: List<String>) : Rule() {
 
     private val engine = AutocompleteEngine.Builder<Record>()

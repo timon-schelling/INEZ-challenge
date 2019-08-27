@@ -8,7 +8,8 @@ open class SimpleSuggestion(
         override val position: Position,
         override val rule: Rule
 ) : Suggestion() {
+    override fun message() = suggested
     override fun toString(): String {
-        return "SimpleSuggestion(original='$original', suggested='$suggested', position=$position, rule=$rule)"
+        return "Suggestion(original='$original', suggested='$suggested', position=$position, rule=$rule)"
     }
 }

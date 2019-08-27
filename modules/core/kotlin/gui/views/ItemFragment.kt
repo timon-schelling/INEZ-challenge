@@ -1,21 +1,22 @@
 package gui.views
 
-import gui.Icons
-import javafx.scene.layout.Priority
+import gui.custom.Icons
 import gui.style.MainStylesheet
 import gui.controllers.MainController
 import gui.custom.iconButton
 import gui.models.Item
 import gui.models.ItemModel
 import gui.models.MainModel
-import gui.style.minusAssign
 import javafx.geometry.Pos
 import javafx.scene.control.Button
 import javafx.scene.control.CheckBox
 import javafx.scene.control.Label
 import tornadofx.*
-import tornadofx.Stylesheet.Companion.checkBox
 
+/**
+ * a item list cell fragment representing a [Item]
+ * @see ListCellFragment
+ */
 class ItemFragment() : ListCellFragment<Item>() {
 
     private val model = ItemModel(itemProperty)

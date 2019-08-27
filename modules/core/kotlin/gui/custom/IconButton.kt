@@ -1,6 +1,5 @@
 package gui.custom
 
-import gui.Icons
 import gui.style.MainStylesheet
 import javafx.event.EventTarget
 import javafx.scene.Node
@@ -9,12 +8,26 @@ import javafx.scene.layout.Pane
 import javafx.scene.paint.Color
 import tornadofx.*
 
+/**
+ * creates A TornadoFX [Button] with a given [icon]
+ * @param icon buttons icon
+ * @param size buttons dimensions
+ * @param color icon color
+ * @param op TornadoFX dsl block used to configure the created [Button]
+ */
 fun EventTarget.iconButton(icon: Icons, size: Dimension<Dimension.LinearUnits> = 20.px, color: Color = Color.BLACK, op: Button.() -> Unit = {}) = iconButton(icon.path, size, color, op)
 
-fun EventTarget.iconButton(path: String, size: Dimension<Dimension.LinearUnits> = 20.px, color: Color = Color.BLACK, op: Button.() -> Unit = {}) = iconButton(
+/**
+ * creates A TornadoFX [Button] with a given [iconSVGPath]
+ * @param iconSVGPath svg icon path used to draw icon
+ * @param size buttons dimensions
+ * @param color icon color
+ * @param op TornadoFX dsl block used to configure the created [Button]
+ */
+fun EventTarget.iconButton(iconSVGPath: String, size: Dimension<Dimension.LinearUnits> = 20.px, color: Color = Color.BLACK, op: Button.() -> Unit = {}) = iconButton(
         Pane().apply {
             style {
-                shape = path
+                shape = iconSVGPath
                 backgroundColor += color
                 minWidth = size
                 minHeight = size
@@ -23,6 +36,12 @@ fun EventTarget.iconButton(path: String, size: Dimension<Dimension.LinearUnits> 
             }
         }, size, op)
 
+/**
+ * creates A TornadoFX [Button] with a given [graphic]
+ * @param graphic the as icon displayed [Node]
+ * @param size buttons dimensions
+ * @param op TornadoFX dsl block used to configure the created [Button]
+ */
 fun EventTarget.iconButton(graphic: Node, size: Dimension<Dimension.LinearUnits> = 20.px, op: Button.() -> Unit = {}) = button {
     addClass(MainStylesheet.iconButton)
     style {

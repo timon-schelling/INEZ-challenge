@@ -8,6 +8,9 @@ import org.slf4j.Marker
 import org.slf4j.helpers.MessageFormatter
 import org.slf4j.spi.LoggerFactoryBinder
 
+/**
+ * used to hide jlf4j logging
+ */
 object StaticLoggerBinder : LoggerFactoryBinder {
     @JvmStatic
     fun getSingleton() = this

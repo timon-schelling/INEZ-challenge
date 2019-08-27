@@ -1,3 +1,5 @@
+@file:JvmName("Main")
+
 import gui.app.INEZApplication
 import javafx.application.Application
 

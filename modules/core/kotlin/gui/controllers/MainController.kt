@@ -1,5 +1,6 @@
 package gui.controllers
 
+import com.github.h0tk3y.regexDsl.regex
 import gui.models.Item
 import gui.models.MainModel
 import kotlinx.serialization.json.Json
@@ -8,22 +9,60 @@ import kotlinx.serialization.json.JsonObjectSerializer
 import kotlinx.serialization.json.json
 import tornadofx.*
 
+/**
+ * TornadoFX main controller
+ */
 object MainController : Controller() {
 
-    fun add(text: String) {
-        if (text.isNotBlank()) MainModel.elements.add(Item(text))
+    /**
+     * adds a item with text
+     * @param text of the item to add
+     */
+    fun add(text: String) = add(Item(text))
+
+    /**
+     * adds a item
+     * duplicates will be merged
+     * @sample "1 Apple" & "2 Apple" -> "3 Apple"
+     * @param item to add
+     */
+    fun add(item: Item) {
+        val itemSplinted = item.validateAndSplit()
+        if (itemSplinted != null) {
+            MainModel.elements.forEach {
+                val itItemSplinted = it.validateAndSplit()
+                if (itItemSplinted != null) {
+                    if (itItemSplinted.text == itemSplinted.text){
+                        remove(it)
+                        add("${(itItemSplinted.digit + itemSplinted.digit).toString().replace(".", ",")} ${itemSplinted.text}")
+                        return@add
+                    }
+                }
+            }
+        }
+        if (item.text.isNotBlank()) MainModel.elements.asReversed().add(item)
     }
 
-    fun remove(todo: Item) = MainModel.elements.remove(todo)
+    /**
+     * removes a item
+     * @param item
+     */
+    fun remove(item: Item) = MainModel.elements.remove(item)
 
-    fun toggleCompleted(completed: Boolean) = with(MainModel.elements) {
-        val oldValue = MainModel.isFilterCompletedElementsEnabled
-        MainModel.isFilterCompletedElementsEnabled = false
+    /**
+     * changes complete of all items
+     * @see Item.completed
+     * @param completed
+     */
+    fun toggleCompleted(completed: Boolean) = with(MainModel.elements.items) {
         filter { it.completed != completed }.forEach { it.completed = completed }
         invalidate()
-        MainModel.isFilterCompletedElementsEnabled = oldValue
     }
 
+    /**
+     * loads model data from MainModel.dataSource
+     * @see MainModel.dataSource
+     */
     fun load() {
         val data = Json.parse(JsonObjectSerializer, MainModel.dataSource.read())
         MainModel.isFilterCompletedElementsEnabled = data.getPrimitiveOrNull("filterCompletedElements")?.booleanOrNull ?: false
@@ -37,6 +76,10 @@ object MainController : Controller() {
         }
     }
 
+    /**
+     * writes model data into MainModel.dataSource
+     * @see MainModel.dataSource
+     */
     fun save() {
         MainModel.dataSource.write(
                 Json.stringify(JsonObjectSerializer, json {

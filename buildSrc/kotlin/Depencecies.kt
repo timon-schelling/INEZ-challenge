@@ -7,6 +7,8 @@ object Versions {
     val kotlinSerializationRuntime = "0.11.1"
     val jLanguageTool = "4.6"
     val jmetro = "4.2"
+    val completly = "0.8.0"
+    val regexDsl = "v0.1"
 }
 
 object Deps {
@@ -17,11 +19,12 @@ object Deps {
     val kotlinSerializationRuntime =
             "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinSerializationRuntime}"
 
-
     object Jvm {
         val tornadofx = "no.tornado:tornadofx:${Versions.tornadofx}"
         val jmetro = "org.jfxtras:jmetro:${Versions.jmetro}"
         val fontawesomefx = "de.jensd:fontawesomefx:${Versions.fontawesomefx}"
         val jLanguageTool = "org.languagetool:language-all:${Versions.jLanguageTool}"
+        val completly = "com.miguelfonseca.completely:completely-core:${Versions.completly}"
+        val regexDsl = "com.github.h0tk3y:regex-dsl:${Versions.regexDsl}"
     }
 }

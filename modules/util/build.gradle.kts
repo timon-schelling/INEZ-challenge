@@ -10,7 +10,8 @@ dependencies {
     compile(Deps.kotlinSerializationRuntime)
     compile(Deps.klock)
     compile(Deps.Jvm.jLanguageTool)
-    compile("com.miguelfonseca.completely:completely-core:0.8.0")
+    compile(Deps.Jvm.regexDsl)
+    compile(Deps.Jvm.completly)
 }
 
 defaultProject()
