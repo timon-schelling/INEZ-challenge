@@ -77,7 +77,8 @@ output:
     8: ben --> wen
     9: ben --> Yen
     10: ben --> peu
-    11: ben --> säen      
+    11: ben --> säen  
+    ...    
 
 ### Build 
 
