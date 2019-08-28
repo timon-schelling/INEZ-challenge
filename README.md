@@ -35,6 +35,50 @@ or run it directly with java:
     java -cp "lib/*" Main
 
 
+### Code example's
+
+#### klang tool
+```kotlin
+import klang.check
+import klang.impl.JLanguageToolRule
+import klang.tool
+import org.languagetool.language.GermanyGerman
+
+fun main() {
+    
+    val someRandomGermanTextWithSpellingIssues = "Hallo. Ich ben ein kliner Blindtext. Und zwar schan so longe ich denken kann."
+
+    //create new tool object
+    val tool = tool {
+        //add all rules here with unaryPlus or add
+        +JLanguageToolRule(GermanyGerman())
+    }
+
+    //call check method on tool to execute all tool rules on someRandomGermanTextWithSpellingIssues
+    val suggestions = tool.check(someRandomGermanTextWithSpellingIssues)
+
+    //read and print suggestion data
+    suggestions.forEachIndexed { i, it ->
+        println("$i: ${it.original} --> ${it.suggested}")
+    }
+
+}
+```
+output: 
+
+    0: ben --> Ben
+    1: ben --> den
+    2: ben --> bei
+    3: ben --> oben
+    4: ben --> per
+    5: ben --> bin
+    6: ben --> eben
+    7: ben --> gen
+    8: ben --> wen
+    9: ben --> Yen
+    10: ben --> peu
+    11: ben --> säen      
+
 ### Build 
 
 The project is built with Gradle. Run Gradle to build the project and to run the tests 
