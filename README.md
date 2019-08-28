@@ -16,6 +16,15 @@ This Project Is my participation in the INEZ-challege by it-talents.de(https://w
 - Find and merge duplicates (to example "1 Apple" & "2 Apple" -> "3 Apple")
 - Pin/unpin window (blue button)
 
+### Requirements
+
+#### Run 
+Installed JRE(1.8 tested on every OS) with javafx (https://www.java.com/de/download/)
+
+#### Build
+Installed JDK(1.8 tested on every OS) with javafx (https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+
+
 ### Installation
 Download the dist.zib from the current release and extract it on your machine
 
@@ -106,14 +115,6 @@ and (as common for gradle) `build` all other build files.
 - amber: parts of my currently not published kotlin utility library Amber  
 - klang: tool to suggest text changes in user input (based on rules, also used for autocompletion)
 - org.slf4j.impl: contains a dummy StaticLoggerBinder(used to disable slf4j logging) 
-
-### Requirements
-
-#### Run 
-Installed JRE(1.8 tested on every OS) with javafx (https://www.java.com/de/download/)
-
-#### Build
-Installed JDK(1.8 tested on every OS) with javafx (https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
 ## License
 
