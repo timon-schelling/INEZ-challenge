@@ -4,6 +4,7 @@
 This Project Is my participation in the INEZ-challege by it-talents.de(https://www.it-talents.de/foerderung/code-competition/edeka-digital-code-competition-08-2019)
 
 ### Features
+- Written in kotlin
 - Easy to use shopping list
 - Auto save
 - Add and remove items
