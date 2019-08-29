@@ -1,7 +1,7 @@
 # INEZ / Timon Schelling
 
 ### About 
-This Project Is my participation in the INEZ-challege by it-talents.de(https://www.it-talents.de/foerderung/code-competition/edeka-digital-code-competition-08-2019)
+This Project Is my participation in the INEZ-challenge by it-talents.de(https://www.it-talents.de/foerderung/code-competition/edeka-digital-code-competition-08-2019)
 
 ### Features
 - Written in kotlin
@@ -19,28 +19,26 @@ This Project Is my participation in the INEZ-challege by it-talents.de(https://w
 ### Requirements
 
 #### Run 
-Installed JRE(1.8 tested on every OS) with javafx (https://www.java.com/de/download/)
+Installed JRE(1.8 tested on every System) with javafx (https://www.java.com/de/download/)
 
 #### Build
-Installed JDK(1.8 tested on every OS) with javafx (https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
-
+Installed JDK(1.8 tested on every System) with javafx (https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
 ### Installation
 Download the dist.zib from the current release and extract it on your machine
 
 ### Usage
-Run the `launch` file depending on your OS
+Run the `launch` file depending on your System
 
 Windows:
 
     .\launch.exe
 
-
-Unix and macOS:
+Linux and MacOS:
 
     ./launch
 
-or run it directly with java:
+or run it directly with Java:
 
     java -cp "lib/*" Main
 
@@ -91,9 +89,8 @@ output:
     ...    
 
 ### Build 
-
 The project is built with Gradle. Run Gradle to build the project and to run the tests 
-using the following command on Unix/macOS:
+using the following command on Linux/MacOS:
 
     ./gradlew build
     

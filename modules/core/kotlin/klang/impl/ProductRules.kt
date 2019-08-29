@@ -107,5 +107,4 @@ class ProductRules(private val products: List<ProductGroup>, private val units: 
         class AddUnitSuggestion(original: String, suggested: String, position: Position, rule: Rule)
             : SimpleSuggestion(original, suggested, position, rule)
     }
-
 }

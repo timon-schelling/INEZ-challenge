@@ -27,6 +27,8 @@ import kotlin.math.max
  */
 class AutoCompleteRule(words: List<String>) : Rule() {
 
+    constructor(vararg word: String) : this(word.asList())
+
     private val engine = AutocompleteEngine.Builder<Record>()
             .setIndex(Adapter())
             .setAnalyzers(LowerCaseTransformer(), WordTokenizer())
