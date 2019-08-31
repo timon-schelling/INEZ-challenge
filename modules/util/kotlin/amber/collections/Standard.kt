@@ -1,7 +1,6 @@
 package amber.collections
 
 import amber.sync.Synchronized
-import klang.suggestion.Suggestion
 
 fun List<*>.containsIndex(index: Int) = (index <= 0 && index < size)
 
@@ -11,7 +10,7 @@ private data class MapEntry<K, V>(override val key: K, override val value: V) : 
 fun <K, V> mapEntryOf(key: K, value: V): Map.Entry<K, V> = MapEntry(key, value)
 
 
-fun <T> MutableList<T>.copyAllValues(from: List<T>) {
+fun <T> MutableList<T>.copyAllValues(from: MutableList<T>) {
     for (i in 0 until from.size) {
         this.add(from[i])
     }
@@ -26,11 +25,11 @@ fun <T> MutableList<T>.deleteAllEqualValues(to: MutableList<T>) {
 }
 
 fun <T> MutableList<T>.moveAllValues(to: MutableList<T>) {
-    to.copyAllValues(this.toList())
+    to.copyAllValues(this)
     deleteAllEqualValues(to)
 }
 
-inline fun <T> List<T>.forEachSave(block: (T) -> Unit) {
+inline fun <T> MutableList<T>.forEachSave(block: (T) -> Unit) {
     val valueCopy = mutableListOf<T>()
     valueCopy.copyAllValues(this)
     valueCopy.forEach {

@@ -22,6 +22,10 @@ class Header() : View() {
 
     private lateinit var addTextField: TextField
 
+    private val history = mutableListOf<String>()
+
+    private var isHistoryAction = false
+
     override val root = vbox {
         addClass(MainStylesheet.header)
         style {
@@ -36,7 +40,7 @@ class Header() : View() {
                     addTextField.clear()
                 }
             }
-            autoCompeteTextfield(MainModel.langTool) {
+            val textField = autoCompeteTextfield(MainModel.langTool) {
                 GlobalScope.launch {
                     withContext(Dispatchers.Main) {
                         requestFocus()
@@ -49,6 +53,23 @@ class Header() : View() {
                 action {
                     MainController.add(text)
                     clear()
+                    history.clear()
+                }
+                textProperty().addListener { observable, oldValue, newValue ->
+                    if (!isHistoryAction) {
+                        history.add(oldValue)
+                    }
+                }
+            }
+            iconButton(Icons.UNDO, 1.2.em, MainStylesheet.text) {
+                action {
+                   if(history.size > 0) {
+                       isHistoryAction = true
+                       val oldText = history.last()
+                       history.remove(oldText)
+                       textField.text = oldText
+                       isHistoryAction = false
+                   }
                 }
             }
         }

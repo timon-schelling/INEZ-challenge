@@ -101,6 +101,64 @@ or the following command on Windows:
 The folder `dist` will contain a ready to use build of INEZ
 and (as common for gradle) `build` all other build files.
 
+### Settings
+
+#### settings.json
+The `settings.json` can be found in the `static` folder. It is used to configure products and units that the app should know about.
+
+The main json object should contain too elements:
+
+`"products"`: 
+
+A json object containing all product groups. 
+
+A product group is described:
+
+`"name of the product groupe": ["name of a specific product", "name of a specific product", ...]`
+
+*U can use ``%PRODUCT%`` inside of a actual product name as a variable containing the product grope name:
+
+````
+"Milch": ["%PRODUCT% Foo&Bar"]
+````
+
+Is the same as
+
+````
+"Milch": ["Milch Foo&Bar"]
+````
+
+`"units"`:
+
+A json array of unit describing json objects
+
+A unit is described:
+
+````json
+{
+  "name": "actual name of the unit",
+  "shortcut": "shortcut of the unit"
+}
+````
+
+To example:
+````json
+{
+    "products": {
+        "Milch": ["%PRODUCT% Foo&Bar", "%PRODUCT% Bar&Foo"]
+    }, 
+    "units": [
+        {
+          "name": "Gramm",
+          "shortcut": "mg"
+        },
+        {
+          "name": "Kilogramm",
+          "shortcut": "kg"
+        }
+    ]
+}
+````
 ### Content
 
 #### Modules 

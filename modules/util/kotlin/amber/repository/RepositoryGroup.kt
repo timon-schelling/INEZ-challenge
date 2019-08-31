@@ -14,7 +14,9 @@ class RepositoryGroup<T>(vararg val items: Repository<T>) : Repository<T> {
     }
 
     override fun remove(element: T) {
-
+        items.forEach {
+            if (it.contains(element)) it.remove(element)
+        }
     }
 
     override val elements: List<T>

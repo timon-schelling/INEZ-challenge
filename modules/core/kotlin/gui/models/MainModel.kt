@@ -47,7 +47,7 @@ object MainModel {
                 data.getObject("products").forEach { k, v ->
                     add(ProductGroup(k, mutableListOf<Product>().apply{
                         v.jsonArray.forEach {
-                            add(Product(it.primitive.content))
+                            add(Product(it.primitive.content.replace("%PRODUCT%", k)))
                         }
                     }))
                 }
