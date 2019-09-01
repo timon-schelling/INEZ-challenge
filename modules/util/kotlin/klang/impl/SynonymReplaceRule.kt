@@ -21,10 +21,13 @@ open class SynonymReplaceRule(private val synonyms: List<Synonym>) : Rule() {
             var index = 0
             while (index < input.text.length) {
                 val positionOfProductString = input.text.indexOf(it.original, index)
-                index = if (positionOfProductString >= 0) {
+                if (positionOfProductString >= 0) {
+                    index = positionOfProductString
                     suggest(ReplaceSynonymSuggestion(it.original, it.replacement, Position(index, it.original.length), this@SynonymReplaceRule))
-                    positionOfProductString + 1
-                } else input.text.length
+                    index++
+                } else {
+                    index = input.text.length
+                }
             }
         }
     }

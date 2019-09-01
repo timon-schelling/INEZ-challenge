@@ -43,10 +43,13 @@ class ProductRules(private val products: List<ProductGroup>, private val units: 
                     var index = 0
                     while (index < input.text.length) {
                         val positionOfProductString = input.text.indexOf(group.name, index)
-                        index = if (positionOfProductString >= 0) {
+                        if (positionOfProductString >= 0) {
+                            index = positionOfProductString
                             suggest(ReplaceWithActualProductNameSuggestion(group.name, it.name, Position(index, group.name.length), this@ReplaceWithActualProductNameRule, it))
-                            positionOfProductString + 1
-                        } else input.text.length
+                            index++
+                        } else {
+                            index = input.text.length
+                        }
                     }
                 }
             }
